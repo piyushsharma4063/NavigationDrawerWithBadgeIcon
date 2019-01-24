@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
         mDrawerList = new ArrayList<>();
 
-
         //Set action bar
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
