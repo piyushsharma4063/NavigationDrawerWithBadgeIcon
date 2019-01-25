@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FixturesFragment extends Fragment {
+public class FragmentThree extends Fragment {
 
 
-    public FixturesFragment() {
+    public FragmentThree() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class FixturesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fixtures, container, false);
+        return inflater.inflate(R.layout.fragment_three, container, false);
     }
 
 }

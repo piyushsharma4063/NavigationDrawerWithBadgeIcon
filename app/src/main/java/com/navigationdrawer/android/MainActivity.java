@@ -1,6 +1,5 @@
 package com.navigationdrawer.android;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -14,10 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -26,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private Fragment mFragment;
     private FragmentManager mFragmentManager;
     private ArrayList<NavDrawer> mDrawerList;
-    private NavRecAdapter mNavDrawerAdapter;
 
     RecyclerView mNavDrawerRV;
     Toolbar mToolbar;
@@ -47,62 +42,62 @@ public class MainActivity extends AppCompatActivity {
         //Set action bar
         setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("Connect");
+            getSupportActionBar().setTitle("Fragment One");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
         setUpNavigationDrawer();
 
         mFragmentManager = getSupportFragmentManager();
-        mFragment = new ConnectFragment();
+        mFragment = new FragmentOne();
         mFragmentManager.beginTransaction().replace(R.id.main_frame, mFragment).commit();
 
-        getSupportActionBar().setHomeAsUpIndicator(setBadgeCount(this,R.drawable.ic_burger, 3));
+        getSupportActionBar().setHomeAsUpIndicator(setBadgeCount(this,R.drawable.ic_burger, 4));
 
 
     }
 
     private void setUpNavigationDrawer() {
-        mDrawerList.add(new NavDrawer("Connect", R.mipmap.ic_launcher, "4"));
-        mDrawerList.add(new NavDrawer("Fixtures", R.mipmap.ic_launcher, "2"));
-        mDrawerList.add(new NavDrawer("Table", R.mipmap.ic_launcher, "0"));
+        mDrawerList.add(new NavDrawer("Fragment One", R.mipmap.ic_launcher, "1"));
+        mDrawerList.add(new NavDrawer("Fragment Two", R.mipmap.ic_launcher, "2"));
+        mDrawerList.add(new NavDrawer("Fragment Three", R.mipmap.ic_launcher, "1"));
 
         //Nav ListView initialize
         mNavDrawerRV.setLayoutManager(new LinearLayoutManager(this));
-        mNavDrawerAdapter = new NavRecAdapter(mDrawerList, new NavRecAdapter.onItemClickListerner() {
+        NavRecAdapter mNavDrawerAdapter = new NavRecAdapter(mDrawerList, new NavRecAdapter.onItemClickListerner() {
             @Override
             public void onClick(int pos) {
                 switch (pos) {
                     case 0:
-                        if (!(mFragment instanceof ConnectFragment)) {
+                        if (!(mFragment instanceof FragmentOne)) {
                             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                            mFragment = new ConnectFragment();
+                            mFragment = new FragmentOne();
                             mFragmentManager.beginTransaction().replace(R.id.main_frame, mFragment).commit();
                         }
                         if (getSupportActionBar() != null) {
-                            getSupportActionBar().setTitle("Connect");
+                            getSupportActionBar().setTitle("Fragment One");
                         }
                         mDrawerLayout.closeDrawers();
                         break;
                     case 1:
-                        if (!(mFragment instanceof FixturesFragment)) {
+                        if (!(mFragment instanceof FragmentTwo)) {
                             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                            mFragment = new FixturesFragment();
+                            mFragment = new FragmentTwo();
                             mFragmentManager.beginTransaction().replace(R.id.main_frame, mFragment).commit();
                         }
                         if (getSupportActionBar() != null) {
-                            getSupportActionBar().setTitle("Fixtures");
+                            getSupportActionBar().setTitle("Fragment Two");
                         }
                         mDrawerLayout.closeDrawers();
                         break;
                     case 2:
-                        if (!(mFragment instanceof TableFragment)) {
+                        if (!(mFragment instanceof FragmentThree)) {
                             getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                            mFragment = new TableFragment();
+                            mFragment = new FragmentThree();
                             mFragmentManager.beginTransaction().replace(R.id.main_frame, mFragment).commit();
                         }
                         if (getSupportActionBar() != null) {
-                            getSupportActionBar().setTitle("Table");
+                            getSupportActionBar().setTitle("Fragment Three");
                         }
                         mDrawerLayout.closeDrawers();
                         break;
